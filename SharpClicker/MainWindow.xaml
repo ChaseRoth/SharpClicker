@@ -1,0 +1,65 @@
+﻿<Window x:Class="SharpClicker.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SharpClicker"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="300">
+
+    <Window.DataContext>
+        <local:MainWindowVM/>
+    </Window.DataContext>
+    
+    <Window.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Slider">
+                <Setter Property="Margin" Value="5"/>
+                <Setter Property="Grid.Column" Value="1"/>
+            </Style>
+            <Style TargetType="Button">
+                <Setter Property="Grid.Column" Value="1"/>
+                <Setter Property="Margin" Value="70,5"/>
+            </Style>
+        </ResourceDictionary>
+    </Window.Resources>
+    
+    <Grid Margin="10">
+        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.6*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="30"/>
+        </Grid.RowDefinitions>
+
+        <!-- Speed -->
+        <Label Content="Max Speed"/>
+        <Slider Minimum="0.66" Maximum="1000" Value="{Binding Interval}"/>
+
+        <!-- Randomizer -->
+        <Label Content="Min Speed" Grid.Row="1"/>
+        <Slider Minimum="0.66" Maximum="1000" Grid.Row="1" Value="{Binding Range}"/>
+
+        <!-- Hotkeys -->
+        <Label Content="Hotkeys" Grid.Row="2" Grid.ColumnSpan="2" FontSize="15" VerticalContentAlignment="Center"/>
+
+        <!-- Toggle Key -->
+        <Label Content="Toggle Key" Grid.Row="3"/>
+        <Button Content="?" Grid.Row="3" Click="OnHotKeyResetBtnClicked"/>
+
+        <!-- Self Destruct -->
+        <Label Content="Self Destruct Key" Grid.Row="4"/>
+        <Button Content="?" Grid.Row="4" Click="OnHotKeyResetBtnClicked"/>
+
+
+        <Label Content="CPS" Grid.Row="5"/>
+        <Label Content="{Binding CPS}" Grid.Row="5" Grid.Column="1"/>
+    </Grid>
+</Window>
